@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("./partials/header") %>
+
+<body>
+  <main>
+    <%- include("./partials/navbar") %>
+    <div class="home">
+      <div class="hero-section">
+        <p class="hero-title">
+          <span class="curly-bracket">{ </span>
+          <span class="brand-text">PseudoJSON</span>
+          <span class="curly-bracket"> }</span>
+        </p>
+        <p class="hero-subtitle">Simple. Minimalistic. Unproblematic.</p>
+        <a href="/docs" target="_blank" rel="noopener noreferrer" class="action-btn primary-btn">Get Started</a>
+        <a href="//github.com/jazellecruz/PseudoJSON-rest-api" target="_blank" rel="noopener noreferrer"
+          class="action-btn secondary-btn">View GitHub</a>
+      </div>
+
+      <div class="about-section">
+        <p class="header-title"><span class="underline-text">What is PseudoJSON?</span></p>
+        <p class="desc">PseudoJSON is a free REST API developed as a small project.
+          It was created as a helper for when you need dummy data for a quick testing and prototyping of your Frontend
+          applications.</p>
+      </div>
+
+      <div class="try-it-section section">
+        <p class="header-title"><span class="underline-text">Try it Out!</span></p>
+        <p class="sub-text">Example Code</p>
+        <blockquote>
+          <pre class="language-js">
+              <code class="code-home" id="example-code">
+  fetch('https://pseudojson.onrender.com/quotes/1')
+  .then(res => res.json())
+  .then(json => console.log(json));
+              </code>
+            </pre>
+        </blockquote>
+
+        <div class="btn-container">
+          <button id="fetch-btn" class="action-btn primary-btn fetch-btn" onclick="handleFetchReq()">
+            Run Code 🏃
+          </button>
+          <button id="copy-btn" class="action-btn secondary-btn copy-btn" onclick="handleCopyReq()">
+            Copy Code ✏️
+          </button>
+        </div>
+
+        <p class="sub-text">Output</p>
+        <blockquote>
+          <pre class="language-js">
+              <code id="code-output">
+  //fetch data to get the output
+              </code>
+            </pre>
+        </blockquote>
+      </div>
+
+      <div class="resources-section section">
+        <p class="header-title"><span class="underline-text">Resources</span></p>
+        <p class="desc">Here are the resources that can be accessed through our API:</p>
+        <table class="resources-list">
+          <tr>
+            <td><a href="/quotes" class="route-link">/quotes</a></td>
+            <td>100 quotes</td>
+          </tr>
+          <tr>
+            <td><a href="/posts" class="route-link">/posts</a></td>
+            <td>100 posts</td>
+          </tr>
+          <tr>
+            <td><a href="/users" class="route-link">/users</a></td>
+            <td>20 users</td>
+          </tr>
+        </table>
+        <p class="note-desc">Note: Results are paginated by 20. Pass pageSize=100 as a query to get all results. Also, new
+          resources may be added in the future.</p>
+      </div>
+
+      <div class="routes-section section">
+        <p class="header-title"><span class="underline-text">Routes</span></p>
+        <p class="desc">HTTPS and HTTP are both supported.</p>
+        <table class="routes-list">
+          <tr>
+            <td>GET</td>
+            <td><a href="/quotes" class="route-link">/quotes</a></td>
+            <td>Get all quotes</td>
+          </tr>
+          <tr>
+            <td>GET</td>
+            <td><a href="/quotes/1" class="route-link">/quotes/1</a></td>
+            <td>Get a quote by ID</td>
+          </tr>
+          <tr>
+            <td>GET</td>
+            <td><a href="/quotes/1" class="route-link">/quotes?category=success</a></td>
+            <td>Get quote by category</td>
+          </tr>
+          <tr>
+            <td>POST</td>
+            <td><a href="/quotes" class="route-link">/quotes</a></td>
+            <td>Add a quote</td>
+          </tr>
+          <tr>
+            <td>PATCH</td>
+            <td><a href="/quotes/1" class="route-link">/quotes/1</a></td>
+            <td>Modify a quote</td>
+          </tr>
+          <tr>
+            <td>PUT</td>
+            <td><a href="/quotes" class="route-link">/quotes/1</a></td>
+            <td>Replace a quote</td>
+          </tr>
+          <tr>
+            <td>DELETE</td>
+            <td><a href="/quotes/1" class="route-link">/quotes/1</a></td>
+            <td>Delete a quote</td>
+          </tr>
+        </table>
+        <p class="note-desc">Note: You can take a look at the <a href="/docs" class="route-link">documentation</a> for usage
+          examples.</p>
+      </div>
+    </div>
+  </main>
+  <%- include("./partials/footer") %>
+  <%- include("./partials/scripts") %>
+</body>
+</html>

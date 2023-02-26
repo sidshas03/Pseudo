@@ -1,0 +1,173 @@
+/* ELEMENTS AND SELECTORS USED THROUGHOUT THE APP */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f5f9fd;
+  color: #201e1e;
+}
+
+main {
+  background-color: inherit;
+  width: 56rem;
+  margin: 0 auto;
+}
+
+/* NAVBAR */
+.logo a {
+  color: inherit;
+  transition-duration: 0.3s;
+}
+
+.logo a:hover{
+  color: #007d81;
+}
+
+.navbar{
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+  width: inherit;
+  background-color: inherit;
+}
+
+.logo {
+  padding: 0 32px;
+} 
+
+.navbar-btn{
+  display: none;
+  border: none;
+  background-color: transparent;
+
+}
+
+.navbar-btn img{
+  width: 32px;
+}
+
+.navbar-btn .menu-icon{
+  display: block;
+}
+
+.navbar-btn .close-icon{
+  display: none;
+}
+
+.navbar-btn.active .menu-icon{
+  display: none;
+}
+
+.navbar-btn.active .close-icon{
+  display: block;
+}
+
+ul {
+  display: flex;
+  gap: 24px;
+}
+
+ul li{
+  list-style: none;
+  padding-left: 24px;
+}
+
+li a{
+  color: #201e1e;
+  font-weight: 500;
+  transition-duration: 0.3s;
+}
+
+li a:hover{
+  color: #007d81;
+}
+
+
+/* CODE BLOCKS */
+
+blockquote{
+  text-align: left;
+  width: 100%;
+  color: #f5f9fd;
+}
+
+code{
+  border-radius: 16px;
+  overflow-x: auto;
+}
+
+/* FOOTER  */
+
+footer {
+  background-color:#e3e4e4;
+  padding: calc(4vh) calc(2vw);
+  margin-top: 16vh;
+  line-height: 1.8;
+}
+
+footer h3 {
+  font-size: calc(1.5vw + 12px);
+}
+
+.footer-wrapper{
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.footer-wrapper p{
+  font-size: calc(.35vw + 8.5px);
+  color: #62666b;
+}
+
+.footer-wrapper p a{
+  color: inherit;
+  font-weight: bolder;
+  margin-right: 8px;
+}
+
+.note-desc{
+  padding: 2rem 6vw;
+  font-size: calc(.3vw + 12px);
+  font-style: italic;
+}
+
+/* RESPONSIVE STYLES  */
+@media screen and (max-width: 951px) {
+  
+  main{
+    width: 100%;
+  }
+  
+  .navlinks-container {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: inherit;
+    padding: 80px 0 36px;
+    display: none
+  }
+
+  .navlinks-container.active {
+    display: unset;
+  }
+
+  .navbar-btn {
+    display: unset;
+    z-index: 100;
+    padding: 0 32px;
+  }
+
+  ul {
+    flex-direction: column;
+  }
+}
