@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("./partials/header") %>
+
+<body>
+  <main>
+    <%- include("./partials/navbar") %>
+    <div class="docs">
+      <div class="sub-section">
+        <h1 class="sub-heading docs-main-title">Getting Started</h1>
+        <p class="docs-desc">PseudoJSON is language-friendly and can be used in any projects that need data in JSON
+        format.</p>
+        <p class="docs-desc">The documentation will guide you on how you can use the API along with few examples.</p>
+      </div>
+      
+      <div class="sub-section">
+        <p class="docs-subtitle sub-heading">Fetching a Resource</p>
+        <p class="docs-desc">By default, resources are paginated by 20. You can scroll down to see how to get the
+          total amount of each resource.
+        </p>
+        <blockquote>
+          <pre class="language-js">
+            <code class="docs-code">
+fetch('https://pseudojson.onrender.com/quotes');
+            </code>
+          </pre>
+        </blockquote>
+        <p class="docs-subtitle sub-heading">Paginating Resources</p>
+        <p class="docs-desc inline-block-format">Pass in <pre class="tag-format">pageSize</pre> to limit results and <pre
+            class="tag-format">page</pre>
+          to get the next set of results.
+        </p>
+        <blockquote>
+          <pre class="language-js">
+            <code class="docs-code">
+fetch('https://pseudojson.onrender.com/quotes?pageSize=30&page=1');
+            </code>
+          </pre>
+        </blockquote>
+      </div>
+
+      <div class="sub-section">
+        <h1 class="docs-subtitle sub-heading">Quotes</h1>
+
+        <h3>Get all quotes</h3>
+        <p class="inline-block-format"><span class="note-text">Note: </span> You can pass in
+          <pre class="tag-format">pageSize=100</pre>
+          as a query to get the maximum number of quotes.</p>
+        <blockquote>
+          <pre class="language-js">
+            <code class="docs-code">
+fetch('https://pseudojson.onrender.com/quotes');
+            </code>
+          </pre>
+        </blockquote>
+
+        <h3>Get a single quote</h3>
+        <p>You can get a quote by its ID.</p>
+        <blockquote>
+          <pre class="language-js">
+            <code class="docs-code">
+fetch('https://pseudojson.onrender.com/quotes/1');
+            </code>
+          </pre>
+        </blockquote>
+
+        <h3>Get quotes by category</h3>
+        <p class="inline-block-format">Categories:
+          <pre class="tag-format">success</pre>,
+          <pre class="tag-format">money</pre>,
+          <pre class="tag-format">motivational</pre>,
+          <pre class="tag-format">power</pre>,
+          <pre class="tag-format">philosophy</pre>,
+          <pre class="tag-format">life</pre>,
+          <pre class="tag-format">happiness</pre>,
+          <pre class="tag-format">love</pre>,
+          <pre class="tag-format">wisdom</pre>,
+          <pre class="tag-format">hope</pre>
+        </p>
+        <blockquote>
+          <pre class="language-js">
+            <code class="docs-code">
+fetch('https://pseudojson.onrender.com/quotes?category=success');
+            </code>
+          </pre>
+        </blockquote>
+
+        <h3>Add a new quote</h3>
+        <p>Note: Adding a quote will not modify the actual database.</p>
+        <p class="inline-block-format">It will simulate a <pre class="tag-format">POST</pre>
+        request then returns the added quote with the 
+        <pre class="tag-format">isAdded</pre>
+        &
+        <pre class="tag-format">addedOn</pre>
+        properties.</p>
+        <blockquote>
+          <pre class="language-js">
+            <code class="docs-code">
+fetch('https://pseudojson.onrender.com/quotes', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json; charset=utf-8'
+  },
+  body: JSON.stringify({
+    id: 101,
+    author: 'Albert Einstein',
+    quote: 'Strive not to be a success, but rather to be of value.',
+    category: 'motivational'
+  })
+})
+.then(res => res.json())
+.then(json => console.log(json));
+
+            </code>
+          </pre>
+        </blockquote>
+        
+        <h3>Update a quote</h3>
+        <p>Note: Updating a quote will not modify the actual database.</p>
+        <p class="inline-block-format">It will simulate a <pre class="tag-format">PATCH</pre>
+        request then returns the modified quote with the 
+        <pre class="tag-format">isModified</pre>
+        &
+        <pre class="tag-format">modifiedOn</pre>
+        properties.</p>
+        <blockquote>
+          <pre class="language-js">
+            <code class="docs-code">
+/* updating the author field of quote with id of 1 */
+fetch('https://pseudojson.onrender.com/quotes/1', {
+  method: 'PATCH',
+  headers: {
+    'Content-Type': 'application/json; charset=utf-8'
+  },
+  body: JSON.stringify({
+    author: 'I am the author!',
+  })
+})
+.then(res => res.json())
+.then(json => console.log(json));
+
+            </code>
+          </pre>
+        </blockquote>
+
+        <h3>Replace a quote</h3>
+        <p>Note: Replacing a quote will not modify the actual database.</p>
+        <p class="inline-block-format">It will simulate a <pre class="tag-format">PUT</pre>
+        request then returns the modified quote with the 
+        <pre class="tag-format">isModified</pre>
+        &
+        <pre class="tag-format">modifiedOn</pre>
+        properties.</p>
+        <blockquote>
+          <pre class="language-js">
+            <code class="docs-code">
+/* replacing the quote with id of 1 */
+fetch('https://pseudojson.onrender.com/quotes/1', {
+  method: 'PUT',
+  headers: {
+    'Content-Type': 'application/json; charset=utf-8'
+  },
+  body: JSON.stringify({
+    author: 'Albert Einstein',
+    quote: 'Strive not to be a success, but rather to be of value.',
+    category: 'motivational'
+  })
+})
+.then(res => res.json())
+.then(json => console.log(json));
+
+            </code>
+          </pre>
+        </blockquote>
+
+        <h3>Delete a quote</h3>
+        <p>Note: Deleting a quote will not modify the actual database.</p>
+        <p class="inline-block-format">It will simulate a <pre class="tag-format">DELETE</pre>
+        request then returns the specified quote with the 
+        <pre class="tag-format">isDeleted</pre>
+        &
+        <pre class="tag-format">deletedOn</pre>
+        properties.</p>
+        <blockquote>
+          <pre class="language-js">
+            <code class="docs-code">
+/* deleting the quote with id of 1 */
+fetch('https://pseudojson.onrender.com/quotes/1', {
+  method: 'DELETE'
+})
+.then(res => res.json())
+.then(json => console.log(json));
+
+            </code>
+          </pre>
+        </blockquote>
+      </div>
+
+      <div class="sub-section">
+        <h1 class="docs-subtitle sub-heading">Posts</h1>
+
+        <h3>Get all posts</h3>
+        <p class="inline-block-format"><span class="note-text">Note: </span> You can pass in
+          <pre class="tag-format">pageSize=100</pre>
+          as a query to get the maximum number of posts.</p>
+        <blockquote>
+          <pre class="language-js">
+            <code class="docs-code">
+fetch('https://pseudojson.onrender.com/posts');
+            </code>
+          </pre>
+        </blockquote>
+
+        <h3>Get a single post</h3>
+        <p>You can get a post by its ID.</p>
+        <blockquote>
+          <pre class="language-js">
+            <code class="docs-code">
+fetch('https://pseudojson.onrender.com/posts/1');
+            </code>
+          </pre>
+        </blockquote>
+
+        <h3>Add a new post</h3>
+        <p>Note: Adding a post will not modify the actual database.</p>
+        <p class="inline-block-format">It will simulate a <pre class="tag-format">POST</pre>
+        request then returns the added post with the 
+        <pre class="tag-format">isAdded</pre>
+        &
+        <pre class="tag-format">addedOn</pre>
+        properties.</p>
+        <blockquote>
+          <pre class="language-js">
+            <code class="docs-code">
+fetch('https://pseudojson.onrender.com/posts', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json; charset=utf-8'
+  },
+  body: JSON.stringify({
+    id: 101,
+    title: 'Praesent tempus nisl ante, at elementum neque varius malesuada.',
+    body: 'Donec euismod, erat in lacinia mattis, tellus mauris varius lacus, facilisis luctus leo lorem vitae odio.',
+  })
+})
+.then(res => res.json())
+.then(json => console.log(json));
+
+            </code>
+          </pre>
+        </blockquote>
+
+        <h3>Update a post</h3>
+        <p>Note: Updating a post will not modify the actual database.</p>
+        <p class="inline-block-format">It will simulate a <pre class="tag-format">PATCH</pre>
+        request then returns the modified post with the 
+        <pre class="tag-format">isModified</pre>
+        &
+        <pre class="tag-format">modifiedOn</pre>
+        properties.</p>
+        <blockquote>
+          <pre class="language-js">
+            <code class="docs-code">
+/* updating the title field of post with id of 1 */
+fetch('https://pseudojson.onrender.com/posts/1', {
+  method: 'PATCH',
+  headers: {
+    'Content-Type': 'application/json; charset=utf-8'
+  },
+  body: JSON.stringify({
+    title: 'Integer hendrerit eu massa ut blandit.',
+  })
+})
+.then(res => res.json())
+.then(json => console.log(json));
+
+            </code>
+          </pre>
+        </blockquote>
+
+        <h3>Replace a post</h3>
+        <p>Note: Replacing a post will not modify the actual database.</p>
+        <p class="inline-block-format">It will simulate a <pre class="tag-format">PUT</pre>
+        request then returns the modified post with the 
+        <pre class="tag-format">isModified</pre>
+        &
+        <pre class="tag-format">modifiedOn</pre>
+        properties.</p>
+        <blockquote>
+          <pre class="language-js">
+            <code class="docs-code">
+/* replacing the post with id of 1 */
+fetch('https://pseudojson.onrender.com/posts/1', {
+  method: 'PUT',
+  headers: {
+    'Content-Type': 'application/json; charset=utf-8'
+  },
+  body: JSON.stringify({
+    title: 'Praesent tempus nisl ante, at elementum neque varius malesuada.',
+    body: 'Donec euismod, erat in lacinia mattis, tellus mauris varius lacus, facilisis luctus leo lorem vitae odio.',
+  })
+})
+.then(res => res.json())
+.then(json => console.log(json));
+
+            </code>
+          </pre>
+        </blockquote>
+
+        <h3>Delete a post</h3>
+        <p>Note: Deleting a post will not modify the actual database.</p>
+        <p class="inline-block-format">It will simulate a <pre class="tag-format">DELETE</pre>
+        request then returns the specified post with the 
+        <pre class="tag-format">isDeleted</pre>
+        &
+        <pre class="tag-format">deletedOn</pre>
+        properties.</p>
+        <blockquote>
+          <pre class="language-js">
+            <code class="docs-code">
+/* deleting the post with id of 1 */
+fetch('https://pseudojson.onrender.com/posts/1', {
+  method: 'DELETE'
+})
+.then(res => res.json())
+.then(json => console.log(json));
+
+            </code>
+          </pre>
+        </blockquote>
+      </div>
+
+      <div class="sub-section">
+        <h1 class="docs-subtitle sub-heading">Users</h1>
+
+        <h3>Get all users</h3>
+        <p class="inline-block-format"><span class="note-text">Note: </span> You can pass in
+          <pre class="tag-format">pageSize=20</pre>
+          as a query to get the maximum number of users.</p>
+        <blockquote>
+          <pre class="language-js">
+            <code class="docs-code">
+fetch('https://pseudojson.onrender.com/users');
+            </code>
+          </pre>
+        </blockquote>
+
+        <h3>Get a single user</h3>
+        <p>You can get a user by its ID.</p>
+        <blockquote>
+          <pre class="language-js">
+            <code class="docs-code">
+fetch('https://pseudojson.onrender.com/users/1');
+            </code>
+          </pre>
+        </blockquote>
+
+        <h3>Filter users</h3>
+        <p class="inline-block-format">You can pass in
+          <pre class="tag-format">gender</pre> to filter users.
+        </p>
+        <blockquote>
+          <pre class="language-js">
+          <code class="docs-code">
+fetch('https://pseudojson.onrender.com/users?gender=male');
+          </code>
+        </pre>
+        </blockquote>
+
+        <h3>Add a new user</h3>
+        <p>Note: Adding a user will not modify the actual database.</p>
+        <p class="inline-block-format">It will simulate a <pre class="tag-format">POST</pre>
+        request then returns the added user with the 
+        <pre class="tag-format">isAdded</pre>
+        &
+        <pre class="tag-format">addedOn</pre>
+        properties.</p>
+        <blockquote>
+          <pre class="language-js">
+            <code class="docs-code">
+fetch('https://pseudojson.onrender.com/users', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json; charset=utf-8'
+  },
+  body: JSON.stringify({
+    id: 101,
+    firstName: 'Sebastian',
+    lastName: 'Carter',
+    // insert other user data here
+  })
+})
+.then(res => res.json())
+.then(json => console.log(json));
+
+            </code>
+          </pre>
+        </blockquote>
+
+        <h3>Update a user</h3>
+        <p>Note: Updating a user will not modify the actual database.</p>
+        <p class="inline-block-format">It will simulate a <pre class="tag-format">PATCH</pre>
+        request then returns the modified user with the 
+        <pre class="tag-format">isModified</pre>
+        &
+        <pre class="tag-format">modifiedOn</pre>
+        properties.</p>
+        <blockquote>
+          <pre class="language-js">
+            <code class="docs-code">
+/* updating the author field of user with id of 1 */
+fetch('https://pseudojson.onrender.com/users/1', {
+  method: 'PATCH',
+  headers: {
+    'Content-Type': 'application/json; charset=utf-8'
+  },
+  body: JSON.stringify({
+    firstName: 'Mike',
+    // other data goes here
+  })
+})
+.then(res => res.json())
+.then(json => console.log(json));
+
+            </code>
+          </pre>
+        </blockquote>
+
+        <h3>Replace a user</h3>
+        <p>Note: Replacing a user will not modify the actual database.</p>
+        <p class="inline-block-format">It will simulate a <pre class="tag-format">PUT</pre>
+        request then returns the modified user with the 
+        <pre class="tag-format">isAdded</pre>
+        &
+        <pre class="tag-format">addedOn</pre>
+        properties.</p>
+        <blockquote>
+          <pre class="language-js">
+            <code class="docs-code">
+fetch('https://pseudojson.onrender.com/users/1', {
+  method: 'PUT',
+  headers: {
+    'Content-Type': 'application/json; charset=utf-8'
+  },
+  body: JSON.stringify({
+    id: 101,
+    firstName: 'Sebastian',
+    lastName: 'Carter',
+    // insert other user data here
+  })
+})
+.then(res => res.json())
+.then(json => console.log(json));
+
+            </code>
+          </pre>
+        </blockquote>
+
+        <h3>Delete a user</h3>
+        <p>Note: Deleting a user will not modify the actual database.</p>
+        <p class="inline-block-format">It will simulate a <pre class="tag-format">DELETE</pre>
+        request then returns the specified user with the 
+        <pre class="tag-format">isDeleted</pre>
+        &
+        <pre class="tag-format">deletedOn</pre>
+        properties.</p>
+        <blockquote>
+          <pre class="language-js">
+            <code class="docs-code">
+/* deleting the post with id of 1 */
+fetch('https://pseudojson.onrender.com/users/1', {
+  method: 'DELETE'
+})
+.then(res => res.json())
+.then(json => console.log(json));
+
+            </code>
+          </pre>
+        </blockquote>
+      </div>
+
+    </div>
+  </main>
+  <%- include("./partials/footer") %>
+  <%- include("./partials/scripts") %>
+</body>
+</html>
